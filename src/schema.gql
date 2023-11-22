@@ -1,0 +1,63 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Ticket {
+  """Field database  (id)"""
+  id: String!
+
+  """Field database (title)"""
+  title: String!
+
+  """Field database (description)"""
+  description: String!
+
+  """Field database (priority)"""
+  priority: String!
+
+  """Field database (category)"""
+  category: String!
+
+  """Field database (status)"""
+  status: String!
+
+  """Field database (createdAt)"""
+  createdAt: Float!
+}
+
+type Query {
+  getTicket(id: String!): Ticket!
+  findAll: [Ticket!]!
+  searchTickets(searchTicketsInput: SearchFiltersInput!): [Ticket!]!
+}
+
+input SearchFiltersInput {
+  start: String
+  end: String
+  priority: String
+  category: String
+  status: String
+  skip: Float!
+  limit: Float!
+}
+
+type Mutation {
+  createTicket(createTicketInput: CreateTicketInput!): Boolean!
+}
+
+input CreateTicketInput {
+  """Example field (title)"""
+  title: String!
+
+  """Example field (description)"""
+  description: String!
+
+  """Example field (priority)"""
+  priority: String!
+
+  """Example field (category)"""
+  category: String!
+
+  """Example field (status)"""
+  status: String!
+}
