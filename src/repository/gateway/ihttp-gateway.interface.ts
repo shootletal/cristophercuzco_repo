@@ -1,5 +1,5 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
 export interface IHttpGateway {
-    get<T = object>(url: string): Observable<T>
+  get<T = object>(url: string): Observable<T>;
 }

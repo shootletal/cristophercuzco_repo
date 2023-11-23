@@ -42,7 +42,7 @@ input SearchFiltersInput {
 }
 
 type Mutation {
-  createTicket(createTicketInput: CreateTicketInput!): Boolean!
+  createTicket(createTicketInput: CreateTicketInput!): Ticket!
 }
 
 input CreateTicketInput {

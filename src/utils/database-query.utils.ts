@@ -1,12 +1,12 @@
-import moment = require("moment");
-import { Between, ObjectLiteral } from "typeorm";
+import moment = require('moment');
+import { Between, ObjectLiteral } from 'typeorm';
 
 export const applyFilterCondition = (
   field: string,
   value: string | number,
 ): ObjectLiteral => {
   return { [field]: value };
-}
+};
 
 export const applyDateFilterCondition = (
   field: string,
@@ -16,4 +16,4 @@ export const applyDateFilterCondition = (
   return {
     [field]: Between(moment(startDate).valueOf(), moment(endDate).valueOf()),
   };
-}
+};

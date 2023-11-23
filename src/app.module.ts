@@ -1,30 +1,20 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql'
+import { GraphQLModule } from '@nestjs/graphql';
 import { TicketModule } from './modules/ticket/ticket.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { InfraestructureModule } from './infraestructure/infraestructure.module';
 import { ConfigModule } from '@nestjs/config';
-import { CockroachdbConfig } from './infraestructure/cockroach-db.config';
-import { IDatabaseConfig } from './repository/config/idatabase-config.interface';
+import { KafkaModule } from './modules/kafka/kafka.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    InfraestructureModule,
+    TicketModule,
+    KafkaModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), "src/schema.gql"),
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    TypeOrmModule.forRootAsync(
-      {
-        imports: [InfraestructureModule],
-        inject: [CockroachdbConfig],
-        useFactory: (databaseConfig: IDatabaseConfig) => databaseConfig.getConfiguration(),
-      }
-    ),
-    TicketModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}
